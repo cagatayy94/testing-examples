@@ -1,14 +1,18 @@
 package io.cagatay;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Test Calculator class Functions")
 class CalculatorTest {
 
     //NAMING
     //test<System Under Test>_<Condition or State Change>_<Expected Result>
     @Test
+    @DisplayName("Test 12 + 13 = 25")
     void testAddition_When12Addition13_ShouldReturn25() {
         Calculator calculator = new Calculator();
         int numberOne = 12;

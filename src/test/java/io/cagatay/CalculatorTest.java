@@ -1,6 +1,11 @@
 package io.cagatay;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,22 +73,31 @@ class CalculatorTest {
         assertEquals(exceptionMessage, arithmeticException.getMessage(), "Unexpected exception message");
     }
 
-    @Test
-    @DisplayName("Test 25 - 13 = 12")
-    void testSubtraction_When25Subtract13_ShouldReturn12() {
-        // Arrange  // Given
-        int numberOne = 25;
-        int numberTwo = 13;
-        int expectedResult = 12;
+
+    @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
+    @ParameterizedTest
+    @MethodSource()
+    void integerSubtraction(int minuend, int subtrahend, int expectedResult) {
+
+        System.out.println("Running test "+minuend+" - "+subtrahend+" = "+expectedResult);
 
         // Act  // When
-        int actualResult = this.calculator.integerSubtraction(numberOne, numberTwo);
+        int actualResult = this.calculator.integerSubtraction(minuend, subtrahend);
 
         // Assert  // Then
         //if you write as a lambda function it will execute that line when only fail
         assertEquals(expectedResult, actualResult,
-                ()-> numberOne+ " - " +numberTwo+" didnt produce "+expectedResult);
+                ()-> minuend+ " - " +subtrahend+" didnt produce "+expectedResult);
 
+    }
+
+    private static Stream<Arguments> integerSubtraction (){
+        return Stream.of(
+                Arguments.of(25, 13, 12),
+                Arguments.of(24, 1, 23),
+                Arguments.of(54, 14, 40),
+                Arguments.of(25, 12, 13)
+        );
     }
 
 

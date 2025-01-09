@@ -2,11 +2,7 @@ package io.cagatay;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,11 +74,14 @@ class CalculatorTest {
     @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
     @ParameterizedTest
     //@MethodSource()
+    /*
     @CsvSource({
             "33, 1, 32",
             "55, 12, 43",
             "54, 1, 53",
     })
+     */
+    @CsvFileSource(resources = "/integerSubtraction.csv")
     void integerSubtraction(int minuend, int subtrahend, int expectedResult) {
 
         System.out.println("Running test "+minuend+" - "+subtrahend+" = "+expectedResult);

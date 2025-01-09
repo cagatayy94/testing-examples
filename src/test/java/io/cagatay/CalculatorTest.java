@@ -49,4 +49,42 @@ class CalculatorTest {
                 ()-> numberOne+ " + " +numberTwo+" didnt produce "+expectedResult);
 
     }
+
+    @Test
+    @DisplayName("Division By Zero")
+    void testDivisionMethod_WhenDivideByZero_ThrowsException() {
+        // Arrange
+        int dividend = 4;
+        int divider = 0;
+        String exceptionMessage = "/ by zero";
+
+        // Act & Assert
+        ArithmeticException arithmeticException = assertThrows(ArithmeticException.class, ()->{
+            // Act
+            this.calculator.divisionInteger(dividend, divider);
+        }, "Must have an exception.");
+
+        // Assert
+        assertEquals(exceptionMessage, arithmeticException.getMessage(), "Unexpected exception message");
+    }
+
+    @Test
+    @DisplayName("Test 25 - 13 = 12")
+    void testSubtraction_When25Subtract13_ShouldReturn12() {
+        // Arrange  // Given
+        int numberOne = 25;
+        int numberTwo = 13;
+        int expectedResult = 12;
+
+        // Act  // When
+        int actualResult = this.calculator.integerSubtraction(numberOne, numberTwo);
+
+        // Assert  // Then
+        //if you write as a lambda function it will execute that line when only fail
+        assertEquals(expectedResult, actualResult,
+                ()-> numberOne+ " - " +numberTwo+" didnt produce "+expectedResult);
+
+    }
+
+
 }

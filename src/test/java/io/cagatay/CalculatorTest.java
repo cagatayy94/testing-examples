@@ -3,6 +3,7 @@ package io.cagatay;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,6 +69,13 @@ class CalculatorTest {
 
         // Assert
         assertEquals(exceptionMessage, arithmeticException.getMessage(), "Unexpected exception message");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"John", "Caca", "Alice"})
+    void valueSourceDemonstration(String firstname){
+        System.out.println(firstname);
+        assertNotNull(firstname);
     }
 
 

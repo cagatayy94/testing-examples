@@ -3,6 +3,7 @@ package io.cagatay;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -76,7 +77,12 @@ class CalculatorTest {
 
     @DisplayName("Test integer subtraction [minuend, subtrahend, expectedResult]")
     @ParameterizedTest
-    @MethodSource()
+    //@MethodSource()
+    @CsvSource({
+            "33, 1, 32",
+            "55, 12, 43",
+            "54, 1, 53",
+    })
     void integerSubtraction(int minuend, int subtrahend, int expectedResult) {
 
         System.out.println("Running test "+minuend+" - "+subtrahend+" = "+expectedResult);
@@ -90,7 +96,7 @@ class CalculatorTest {
                 ()-> minuend+ " - " +subtrahend+" didnt produce "+expectedResult);
 
     }
-
+/*
     private static Stream<Arguments> integerSubtraction (){
         return Stream.of(
                 Arguments.of(25, 13, 12),
@@ -100,5 +106,5 @@ class CalculatorTest {
         );
     }
 
-
+*/
 }
